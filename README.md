@@ -86,7 +86,7 @@ In this case, the confidence interval falls between -0.00393 and 0.0007, which i
 </p>
 
 ## Sample size
-Although in this project, we put more focus on the result analysis, it is too important to ignore the issue of sample size. If you keep running the test while increasing the sample size as you go, you would at some point get the statistically significant result even if there is not much difference between the control and test group. This is the reason why it's better that we decide a sample size in advance before actually running the A/B test. To estimate our needed sample size, we can choose our desired practical significance (minimum dedectable effect(MDE)), set our desired confidence level & power, and then estimate our standard error using these values. We can easily do this by leveraging the function defined below.
+Although in this project, we put more focus on the result analysis, it is too important to ignore the issue with sample size. If we keep running the test while increasing the sample size as we go, we would at some point get the statistically significant result even if there is not much difference between the control and test group. This is the reason why it's better that we decide a sample size in advance before actually running the A/B test. To estimate our needed sample size, we can choose our desired practical significance (minimum dedectable effect(MDE)), set our desired confidence level & power, and then estimate our standard error using these values. We can easily do this by leveraging the function defined below.
 
 ``` Python 
 # Check what sample size is required
@@ -100,7 +100,7 @@ sample_size = TTestIndPower().solve_power(effect_size = effect_size,
 ```
 
 
-It is also important to note that there are various ways to decrease the needed sample size. One is by switching the unit of observation in a way that reduces variability in the data such as from revenue to conversion, because you are decreasing the variation of results. Another way is excluding users who are irrelevant to the process.
+It is also important to note that there are various ways to decrease the needed sample size. One is by switching the unit of observation in a way that reduces variability in the data such as from revenue to conversion, because you are decreasing the variation of results. Another way is excluding users or other unit that are irrelevant to the process.
 
 ## Reference
 - [A/B Testing by Google offered by Udacity](https://classroom.udacity.com/courses/ud257)
