@@ -100,7 +100,7 @@ sample_size = TTestIndPower().solve_power(effect_size = effect_size,
 ```
 
 
-It is also important to note that there are various ways to decrease the needed sample size. One is by switching the unit of observation in a way that reduces variability in the data such as from revenue to conversion, because you are decreasing the variation of results. Another way is excluding users or other unit that are irrelevant to the process.
+It is also important to note that there are various ways to decrease the needed sample size. One is by switching the unit of observation in a way that reduces variability in the data such as from revenue to conversion, because you are decreasing the variation of results. Another way is excluding users or other experimental unit that are irrelevant to the process.
 
 ## Reference
 - [A/B Testing by Google offered by Udacity](https://classroom.udacity.com/courses/ud257)
