@@ -8,6 +8,14 @@ The data I am using for this project is from kaggle. The dataset contains the co
 
 whether this difference is statistically significant. That is, measuring if the values differ more than would be expected due to randomness. This is where the p-value comes in.
 
+<p align="center">	
+	<img align="middle" width=700 src="image/Figure1.png">
+</p>
+<p align="center">
+  <i>Figure 1.</i> 
+</p>
+From Figure 1, we can compare the percentage of overall users in each group to make sure there is no obvious bias in our assignment procedure. If we have other relevant demographics data, we should also compute our percentage calculation broken out by the demographics to confirm our result is truly random across cohorts.
+
 ## Calculate the p-value
 The p-value is the probability of observing a value as or more extreme than the observed value under the Null hypothesis. If this value is low, then it means either our power is low or there is a low probability of observing this value if the Null hypothesis is true.
 It turns out that the we are having a p-value of 0.189, which is larger confidence level of 0.1, suggesting that we cannot reject the Null hypothesis and conclude which landing page drives more conversions.
