@@ -54,6 +54,28 @@ It turns out that we are having a p-value of 0.189, which is larger than the con
 ## Calculate the statistical power
 Even if we have an extremely low p-value, we would still want to look at the power, ensuring that we avoid running an underpowered A/B test. Statistical power is the probability of finding statistically significant results when the Alternative hypothesis is true. The underpowered A/B test means that we don't have an adequate sample size and will significantly increase the chance of getting a false negative result. For example, the test result couldn't find the difference between the control and test groups, whereas the difference actually exists. Statistical power is related to sample size and minimum detectable effect, and it increases with sample size as a large sample size means you collect more information. Additionally, as the confidence level goes up, the power goes down. After applying the `get_power` function, we get a power of roughly 0.26, which is low compared to the widely accepted standard of 0.8.
 
+``` Python
+# Define a fucntion that derives statistical power
+def get_power(n, p1, p2, cl):
+    alpha = 1 - cl
+    
+    qu = scipy.stats.norm.ppf(1 - alpha/2)
+    
+    diff = abs(p2 - p1)
+    bp = (p1 + p2) / 2
+    
+    v1 = p1 * (1 - p1)
+    v2 = p2 * (1 - p2)
+    
+    bv = bp * (1 - bp)
+    
+    power_part_one = scipy.stats.norm.cdf((n**0.5 * diff - qu * (2 * bv)**0.5)/ (v1 + v2)**0.5)
+    power_part_two = 1 - scipy.stats.norm.cdf((n**0.5 * diff + qu * (2 * bv)**0.5)/ (v1 + v2)**0.5)
+    
+    power = power_part_one + power_part_two
+
+    return(power)
+```
 
 ## Calculate the confidence intervals
 For demonstration purposes, I would also provide confidence intervals for our estimate. The confidence interval contextualizes the confidence we have in our estimation process. Specifically, suppose we provide a 95% confidence interval. In that case, we are saying that if we had a series of independent experiments and for each estimated unrelated parameter and a 95% confidence interval, then 95% of the intervals will contain the true parameter. As a result, if we are computing the confidence intervals for two groups separately, there should not be an overlap between them as it indicates that you need perhaps a larger sample size and continue the test. To proceed with the analysis, we will need to define a function that helps us get the confidence intervals.
