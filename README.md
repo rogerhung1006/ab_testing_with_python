@@ -1,5 +1,9 @@
 # Landing Page A/B Test Result Analysis
-![123](image/ab_testing_cover.png)
+<p align="center">	
+	<img align="middle" width=700 src="image/ab_testing_cover.png">
+</p>
+<p align="center">
+
 ## Introduction
 An A/B test is an experiment in which you test two different values of the same variable against one another to determine which one is “better” by evaluating their performance among two randomly assigned groups of real users.
 In this project, I will focus more on the ab test result analysis. The typical ab testing process is to randomly selecting a subset of users and show them the new feature, and monitor the conversion behavior of this group compared to the other users. We can then observe whether one group converts at a higher rate than the other.
