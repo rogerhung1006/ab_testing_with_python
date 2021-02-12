@@ -26,12 +26,6 @@ From Figure 1, we can compare the percentage of overall users in each group to m
   <i>Figure 2.</i> 
 </p>
 
-``` Python
-
-class MyClass
-end
-```
-
 ## Calculate the p-value
 The p-value is the probability of observing a value as or more extreme than the observed value under the Null hypothesis. If this value is low, then it means either our power is low or there is a low probability of observing this value if the Null hypothesis is true. We first define a function that can easily get the p-value.
 
@@ -56,7 +50,35 @@ Even if we have a extremely low p-value, we would still want to look at the powe
 
 
 ## Calculate the confidence intervals
+For demonstration purpose, we would also provide confidence intervals for our estimate. The confidence interval contextualizes the confidence we have in our estimation process. Specifically, if we provide a 95% confidence interval we are saying that if we had a series of independent experiments and for each estimated an unrelated parameter and a 95% confidence interval, then 95% of the intervals will contain the true parameter. As a result, if we are computing the confidence intervals for two groups separately, there should not be a overlap between them as it indicates that you need perhaps a larger sample size and continue the test. To procced with the anlaysis, we will need to define a function that helps us get the confidence intervals.
 
+``` Python
+# Define a fucntion that derives confidence interval
+def get_ci(diff, cl, sd):
+    rng_val = scipy.stats.norm.ppf(1 - confidence_level / 2) * sd
+    
+    lwr_bnd = diff - rng_val
+    upr_bnd = diff + rng_val 
+    
+    return_val = (lwr_bnd, upr_bnd)
+    return(return_val)
+```
+
+In this case, the confidence interval falls between -0.00393 and 0.0007, which is not only wide but also contains zero. Therefore we cannot conclude which landing page drives more conversions.
+    
+<p align="center">	
+	<img align="middle" width=700 src="image/Figure3.png">
+</p>
+<p align="center">
+  <i>Figure 3.</i> 
+</p>
+
+<p align="center">	
+	<img align="middle" width=700 src="image/Figure4.png">
+</p>
+<p align="center">
+  <i>Figure 4.</i> 
+</p>
 
 ## Reference
 - [A/B Testing by Google offered by Udacity](https://classroom.udacity.com/courses/ud257)
