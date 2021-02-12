@@ -11,9 +11,7 @@ The data I am using for this project is from kaggle. The dataset contains the co
 
 ## Clean the data and check sanity
 
-To begin with, we will need to clean the data and runn some sanity checks to make sure the experiment results reflect the initial design. Also if we are tracking an average goal such as average metric(avergae revenue per user), then the presence of outliers like few abnormally large orders may easily skew the test result. The solution to the problem is to keep an eye on those outliers in the test result in the first place.
-
-whether this difference is statistically significant. That is, measuring if the values differ more than would be expected due to randomness. This is where the p-value comes in.
+To begin with, we will need to clean the data and run some sanity checks to make sure the experiment results reflect the initial design and remove some confounding variables. Also if we are tracking an average goal such as average metric(avergae revenue per user), then the presence of outliers like few abnormally large orders may easily skew the test result. The solution to the problem is to keep an eye on those outliers in the test result in the first place. 
 
 <p align="center">	
 	<img align="middle" width=700 src="image/Figure1.png">
@@ -30,6 +28,8 @@ From Figure 1, we can compare the percentage of overall users in each group to m
 <p align="center">
   <i>Figure 2.</i> 
 </p>
+
+From Figure 2, we see the difference between the two groups is so subtle that we cannot make the judgement call whether this difference is statistically significant or simply a result due to randomness. To address for this probelem, this is where the p-value comes in.
 
 ## Calculate the p-value
 The p-value is the probability of observing a value as or more extreme than the observed value under the Null hypothesis. If this value is low, then it means either our power is low or there is a low probability of observing this value if the Null hypothesis is true. We first define a function that can easily get the p-value.
@@ -84,6 +84,23 @@ In this case, the confidence interval falls between -0.00393 and 0.0007, which i
 <p align="center">
   <i>Figure 4.</i> 
 </p>
+
+## Sample size
+Although in this project, we put more focus on the result analysis, it is too important to ignore the issue of sample size. If you keep running the test while increasing the sample size as you go, you would at some point get the statistically significant result even if there is not much difference between the control and test group. This is the reason why it's better that we decide a sample size in advance before actually running the A/B test. To estimate our needed sample size, we can choose our desired practical significance (minimum dedectable effect(MDE)), set our desired confidence level & power, and then estimate our standard error using these values. We can easily do this by leveraging the function defined below.
+
+``` Python 
+# Check what sample size is required
+practical_significance = 0.005 
+confidence_level = 0.05 
+power = 0.8 
+effect_size = proportion_effectsize(con_conv, con_conv + practical_significance)
+sample_size = TTestIndPower().solve_power(effect_size = effect_size, 
+					  power = power, 
+                                          alpha = confidence_level)
+```
+
+
+It is also important to note that there are various ways to decrease the needed sample size. One is by switching the unit of observation in a way that reduces variability in the data such as from revenue to conversion, because you are decreasing the variation of results. Another way is excluding users who are irrelevant to the process.
 
 ## Reference
 - [A/B Testing by Google offered by Udacity](https://classroom.udacity.com/courses/ud257)
