@@ -49,10 +49,10 @@ def get_pvalue(p1, p2, p1_size, p2_size):
     return p_value
 ```
 
-It turns out that we are having a p-value of 0.189, which is larger than the confidence level of 0.1, suggesting that we cannot reject the Null hypothesis and cannot conclude which landing page drives more conversions.
+It turns out that we are having a p-value of 0.189, which is larger than the confidence level of 0.1, suggesting that we cannot reject the Null hypothesis and cannot conclude which landing page drives more conversions. 
 
 ## Calculate the statistical power
-Even if we have an extremely low p-value, we would still want to look at the power, ensuring that we avoid running an underpowered A/B test. Statistical power is the probability of finding statistically significant results when the Alternative hypothesis is true. The underpowered A/B test means that we don't have an adequate sample size and will significantly increase the chance of getting a false negative result. For example, the test result couldn't find the difference between the control and test groups, whereas the difference actually exists. Statistical power is related to sample size and minimum detectable effect, and it increases with sample size as a large sample size means you collect more information. Additionally, as the confidence level goes up, the power goes down. After applying the `get_power` function, we get a power of roughly 0.26, which is low compared to the widely accepted standard of 0.8.
+Even if we had an extremely low p-value from the previous result, we would still want to look at the power, ensuring that we avoid running an underpowered A/B test. Statistical power is the probability of finding statistically significant results when the Alternative hypothesis is true. The underpowered A/B test means that we don't have an adequate sample size and will significantly increase the chance of getting a false negative result. For example, the test result couldn't find the difference between the control and test groups, whereas the difference actually exists. Statistical power is related to sample size and minimum detectable effect, and it increases with sample size as a large sample size means you collect more information. Additionally, as the confidence level goes up, the power goes down. After applying the `get_power` function, we get a power of roughly 0.26, which is low compared to the widely accepted standard of 0.8.
 
 ``` Python
 # Define a fucntion that derives statistical power
