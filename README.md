@@ -7,7 +7,7 @@
 ## Introduction
 An A/B test is an experiment in which you test two different values of the same variable against one another to determine which one is “better” by evaluating their performance among two randomly assigned groups of real users.
 
-In this project, I will focus more on the ab test result analysis. The typical ab testing process is to randomly select a subset of users, show them the new feature, and monitor this group's conversion behavior compared to the other users. We can then observe whether one group converts at a higher rate than the other.
+In this project, I will focus more on the ab test result analysis. The typical A/B testing process is to randomly select a subset of users, show them the new feature, and monitor this group's conversion behavior compared to the other users. We can then observe whether one group converts at a higher rate than the other.
 The data I am using for this project is from Kaggle. The dataset contains the conversion rates of two groups (control and treatment) exposed to different landing pages. The dataset comprises twenty-nine thousand rows of data points.
 
 ## Clean the data and check sanity
